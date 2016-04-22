@@ -11,8 +11,6 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.OkUrlFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +31,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
+
+import okhttp3.OkHttpClient;
 
 /**
  * By cindy on 7/24/15 10:08 AM.
@@ -99,6 +99,8 @@ public class RequestManager {
             }
 
             HurlStack stack = new SelfSignSslOkHttpStack(socketFactoryMap);
+
+            stack = new OkHttpStack();
 
             requestQueue = Volley.newRequestQueue(context, stack);
             requestQueue.start();
